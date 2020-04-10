@@ -1,0 +1,71 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.0.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'br.com.wallet'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	implementation 'org.springframework.kafka:spring-kafka'
+
+	compileOnly 'org.projectlombok:lombok'
+
+//	spring security
+//	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.0.0.RELEASE'
+//	compile 'org.springframework:spring-context-support'
+//	compile 'org.springframework.boot:spring-boot-starter-mail'
+//	jwt
+//	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+
+	//swagger
+	compile('io.springfox:springfox-swagger2:2.8.0')
+	compile('io.springfox:springfox-swagger-ui:2.8.0')
+
+	//http client
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.5'
+
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java'
+
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+//dependencyManagement {
+//	imports {
+//		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//	}
+//}
+
