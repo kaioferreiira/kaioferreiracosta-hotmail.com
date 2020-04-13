@@ -1,9 +1,18 @@
+server:
+    port: 8052
+
 spring:
     datasource:
-        url: CLEARDB_DATABASE_URL
-    jpa:
-        hibernate:
-            ddl-auto: create-drop
+        url: jdbc:mysql://localhost:3306/WALLET?autoReconnect=true&useSSL=false
+        username: root
+        password: root@123
 
-permissao-service:
-    url: https://user-info.herokuapp.com
+    jpa:
+        properties:
+            hibernate:
+                format_sql: true
+        hibernate:
+            ddl-auto: update
+
+#permissao-service:
+#    url: https://user-info.herokuapp.com
